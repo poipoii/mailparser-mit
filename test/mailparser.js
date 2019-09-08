@@ -12,12 +12,12 @@ describe("General tests", () => {
             "\r\n" +
             "ÕÄ\r\n" +
             "ÖÜ", // \r\nÕÄÖÜ
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         mailparser.end();
@@ -65,7 +65,7 @@ describe("General tests", () => {
     it("Headers only", (done) => {
         const encodedText = "Content-type: text/plain; charset=utf-8\r\n" +
             "Subject: ÕÄÖÜ",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -78,7 +78,7 @@ describe("General tests", () => {
     it("Body only", (done) => {
         const encodedText = "\r\n" +
             "===",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -96,7 +96,7 @@ describe("General tests", () => {
             "ÕÄÖÜ\r\n" +
             "ÜÖÄÕ\n" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -119,7 +119,7 @@ describe("General tests", () => {
             "\r\n" +
             "AAECAwQFBg==\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
@@ -142,7 +142,7 @@ describe("General tests", () => {
             "Subject: ÕÄÖÜ\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -158,7 +158,7 @@ describe("General tests", () => {
             "X-Priority: 1 (Highest)\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -173,7 +173,7 @@ describe("General tests", () => {
             "References: <mail1>\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -189,7 +189,7 @@ describe("General tests", () => {
             "    <mail2> <mail3>\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -205,7 +205,7 @@ describe("General tests", () => {
             "References: <mail3>\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -220,7 +220,7 @@ describe("General tests", () => {
             "in-reply-to: <mail1>\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -236,7 +236,7 @@ describe("General tests", () => {
             "    <mail2> <mail3>\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -252,7 +252,7 @@ describe("General tests", () => {
             "in-reply-to: <mail3>\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -267,7 +267,7 @@ describe("General tests", () => {
             "Subject: ÕÄÖÜ\n" +
             "\r" +
             "1234",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -284,7 +284,7 @@ describe("General tests", () => {
 describe("Text encodings", () => {
     it("Plaintext encoding: Default", (done) => {
         const encodedText = [13, 10, 213, 196, 214, 220], // \r\nÕÄÖÜ
-            mail = new Buffer(encodedText);
+            mail = new Buffer.from(encodedText);
 
 
         const mailparser = new MailParser();
@@ -299,7 +299,7 @@ describe("Text encodings", () => {
         const encodedText = "Content-Type: TEXT/PLAIN; CHARSET=UTF-8\r\n" +
             "\r\n" +
             "ÕÄÖÜ",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -313,7 +313,7 @@ describe("Text encodings", () => {
         const encodedText = "Content-Type: text/html\r\n" +
             "\r\n" +
             "<html><head><meta charset=\"utf-8\"/></head><body>ÕÄÖÜ",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
 
         const mailparser = new MailParser();
@@ -328,7 +328,7 @@ describe("Text encodings", () => {
         const encodedText = "Content-Type: text/html; charset=iso-UTF-8\r\n" +
             "\r\n" +
             "ÕÄÖÜ",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -343,7 +343,7 @@ describe("Text encodings", () => {
             "From: =?utf-8?q??= <sender@email.com>\r\n" +
             "To: =?ISO-8859-1?Q?Keld_J=F8rn_Simonsen?= <to@email.com>\r\n" +
             "Subject: =?iso-8859-1?Q?Avaldu?= =?iso-8859-1?Q?s_lepingu_?=\r\n =?iso-8859-1?Q?l=F5petamise?= =?iso-8859-1?Q?ks?=\r\n",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -362,7 +362,7 @@ describe("Binary attachment encodings", () => {
             "Content-Transfer-Encoding: QUOTED-PRINTABLE\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -377,7 +377,7 @@ describe("Binary attachment encodings", () => {
             "Content-Transfer-Encoding: base64\r\n" +
             "\r\n" +
             "AAECA/3+/w==",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -391,7 +391,7 @@ describe("Binary attachment encodings", () => {
         const encodedText = "Content-Type: application/octet-stream\r\n" +
             "\r\n" +
             "ÕÄÖÜ",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -409,7 +409,7 @@ describe("Binary attachment encodings", () => {
             "#0V%T\r\n" +
             "`\r\n" +
             "end",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -427,7 +427,7 @@ describe("Attachment Content-Id", () => {
             "Content-Disposition: attachment; filename=\"=?UTF-8?Q?=C3=95=C3=84=C3=96=C3=9C?=\"\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -444,7 +444,7 @@ describe("Attachment Content-Id", () => {
             "Content-Id: test@localhost\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -462,7 +462,7 @@ describe("Attachment filename", () => {
             "Content-Disposition: attachment; filename=\"=?UTF-8?Q?=C3=95=C3=84=C3=96=C3=9C?=\"\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -478,7 +478,7 @@ describe("Attachment filename", () => {
             "Content-Disposition: attachment; filename*=\"UTF-8''%C3%95%C3%84%C3%96%C3%9C\"\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -495,7 +495,7 @@ describe("Attachment filename", () => {
             "    filename*=utf-8''John%20Doe's.xls\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -514,7 +514,7 @@ describe("Attachment filename", () => {
             "    filename*2=.txt\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -532,7 +532,7 @@ describe("Attachment filename", () => {
             "    filename*1*=%C3%96%C3%9C\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -551,7 +551,7 @@ describe("Attachment filename", () => {
             "    filename*2=.txt\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -566,7 +566,7 @@ describe("Attachment filename", () => {
             "Content-Transfer-Encoding: QUOTED-PRINTABLE\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -581,7 +581,7 @@ describe("Attachment filename", () => {
             "Content-Transfer-Encoding: QUOTED-PRINTABLE\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
@@ -600,7 +600,7 @@ describe("Attachment filename", () => {
             "Content-Transfer-Encoding: QUOTED-PRINTABLE\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -617,7 +617,7 @@ describe("Attachment filename", () => {
             "Content-Transfer-Encoding: QUOTED-PRINTABLE\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -632,7 +632,7 @@ describe("Attachment filename", () => {
             "Content-Transfer-Encoding: QUOTED-PRINTABLE\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -647,7 +647,7 @@ describe("Attachment filename", () => {
             "Content-Transfer-Encoding: QUOTED-PRINTABLE\r\n" +
             "\r\n" +
             "=00=01=02=03=FD=FE=FF",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -669,7 +669,7 @@ describe("Attachment filename", () => {
             "\r\n" +
             "=00=01=02=03=FD=FE=FF\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -692,7 +692,7 @@ describe("Attachment filename", () => {
             "\r\n" +
             "=00=01=02=03=FD=FE=FF\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -723,7 +723,7 @@ describe("Attachment filename", () => {
             "\r\n" +
             "=00=01=02=03=FD=FE=FF\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -744,7 +744,7 @@ describe("Attachment filename", () => {
             "\r\n" +
             "=00=01=02=03=FD=FE=FF\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -762,7 +762,7 @@ describe("Attachment filename", () => {
             "\r\n" +
             "=00=01=02=03=FD=FE=FF\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -785,7 +785,7 @@ describe("Attachment filename", () => {
             "`\r\n" +
             "end\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -799,7 +799,7 @@ describe("Attachment filename", () => {
 describe("Plaintext format", () => {
     it("Default", (done) => {
         const encodedText = "Content-Type: text/plain;\r\n\r\nFirst line \r\ncontinued",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -811,7 +811,7 @@ describe("Plaintext format", () => {
 
     it("Flowed", (done) => {
         const encodedText = "Content-Type: text/plain; format=flowed\r\n\r\nFirst line \r\ncontinued \r\nand so on",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -825,7 +825,7 @@ describe("Plaintext format", () => {
         const encodedText = "Content-Type: text/plain; format=flowed\r\n\r\nHow are you today?\r\n" +
             "-- \r\n" +
             "Signature\r\n",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -837,7 +837,7 @@ describe("Plaintext format", () => {
 
     it("Fixed", (done) => {
         const encodedText = "Content-Type: text/plain; format=fixed\r\n\r\nFirst line \r\ncontinued \r\nand so on",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -849,7 +849,7 @@ describe("Plaintext format", () => {
 
     it("DelSp", (done) => {
         const encodedText = "Content-Type: text/plain; format=flowed; delsp=yes\r\n\r\nFirst line \r\ncontinued \r\nand so on",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -861,7 +861,7 @@ describe("Plaintext format", () => {
 
     it("Quoted printable, Flowed", (done) => {
         const encodedText = "Content-Type: text/plain; format=flowed\r\nContent-Transfer-Encoding: QUOTED-PRINTABLE\r\n\r\nFoo =\n\nBar =\n\nBaz",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -875,7 +875,7 @@ describe("Plaintext format", () => {
         const encodedText = "Content-Type: text/plain; format=flowed\r\nContent-Transfer-Encoding: QUOTED-PRINTABLE\r\n\r\nHow are you today?\r\n" +
             "--=20\r\n" +
             "Signature\r\n",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -887,7 +887,7 @@ describe("Plaintext format", () => {
 
     it("Quoted printable, DelSp", (done) => {
         const encodedText = "Content-Type: text/plain; format=flowed; delsp=yes\r\nContent-Transfer-Encoding: QUOTED-PRINTABLE\r\n\r\nFoo =\n\nBar =\n\nBaz",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -901,7 +901,7 @@ describe("Plaintext format", () => {
 describe("Transfer encoding", () => {
     it("Quoted-Printable Default charset", (done) => {
         const encodedText = "Content-type: text/plain\r\nContent-Transfer-Encoding: quoted-printable\r\n\r\n=D5=C4=D6=DC",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -913,7 +913,7 @@ describe("Transfer encoding", () => {
 
     it("Quoted-Printable UTF-8", (done) => {
         const encodedText = "Content-type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: QUOTED-PRINTABLE\r\n\r\n=C3=95=C3=84=C3=96=C3=9C",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -925,7 +925,7 @@ describe("Transfer encoding", () => {
 
     it("Base64 Default charset", (done) => {
         const encodedText = "Content-type: text/plain\r\nContent-Transfer-Encoding: bAse64\r\n\r\n1cTW3A==",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -937,7 +937,7 @@ describe("Transfer encoding", () => {
 
     it("Base64 UTF-8", (done) => {
         const encodedText = "Content-type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: bAse64\r\n\r\nw5XDhMOWw5w=",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -949,7 +949,7 @@ describe("Transfer encoding", () => {
 
     it("Mime Words", (done) => {
         const encodedText = "Content-type: text/plain; charset=utf-8\r\nSubject: =?iso-8859-1?Q?Avaldu?= =?iso-8859-1?Q?s_lepingu_?=\r\n =?iso-8859-1?Q?l=F5petamise?= =?iso-8859-1?Q?ks?=\r\n",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -963,7 +963,7 @@ describe("Transfer encoding", () => {
         const encodedText = "Content-type: text/plain; charset=utf-8\r\n" +
             "Subject: abc=?utf-8?Q?=C3=B6=C\r\n" +
             " 3=B5=C3=BC?=",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -978,7 +978,7 @@ describe("Transfer encoding", () => {
             textmap = encodedText.split('').map((chr) => {
                 return chr.charCodeAt(0);
             }),
-            mail = new Buffer(textmap);
+            mail = new Buffer.from(textmap);
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -990,7 +990,7 @@ describe("Transfer encoding", () => {
 
     it("8bit UTF-8", (done) => {
         const encodedText = "Content-type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: 8bit\r\n\r\nÕÄÖÜ",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1002,7 +1002,7 @@ describe("Transfer encoding", () => {
 
     it("Invalid Quoted-Printable", (done) => {
         const encodedText = "Content-type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: QUOTED-PRINTABLE\r\n\r\n==C3==95=C3=84=C3=96=C3=9C=",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1014,7 +1014,7 @@ describe("Transfer encoding", () => {
 
     it("Invalid BASE64", (done) => {
         const encodedText = "Content-type: text/plain; charset=utf-8\r\nContent-Transfer-Encoding: base64\r\n\r\nw5XDhMOWw5",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1028,7 +1028,7 @@ describe("Transfer encoding", () => {
 
     it("gb2312 mime words", (done) => {
         const encodedText = "From: =?gb2312?B?086yyZjl?= user@ldkf.com.tw\r\n\r\nBody",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1043,7 +1043,7 @@ describe("Transfer encoding", () => {
 
     it("Valid Date header", (done) => {
         const encodedText = "Date: Wed, 08 Jan 2014 09:52:26 -0800\r\n\r\n1cTW3A==",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1056,7 +1056,7 @@ describe("Transfer encoding", () => {
 
     it("Invalid Date header", (done) => {
         const encodedText = "Date: zzzzz\r\n\r\n1cTW3A==",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1069,7 +1069,7 @@ describe("Transfer encoding", () => {
 
     it("Missing Date header", (done) => {
         const encodedText = "Subject: test\r\n\r\n1cTW3A==",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1095,7 +1095,7 @@ describe("Transfer encoding", () => {
             "Date: Fri, 6 Feb 2015 16:13:51 -0700 (MST)\r\n" +
             "\r\n" +
             "1cTW3A==",
-            mail = new Buffer(encodedTest, "utf-8");
+            mail = new Buffer.from(encodedTest, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1112,7 +1112,7 @@ describe("Transfer encoding", () => {
 describe("Multipart content", () => {
     it("Simple", (done) => {
         const encodedText = "Content-type: multipart/mixed; boundary=ABC\r\n\r\n--ABC\r\nContent-type: text/plain; charset=utf-8\r\n\r\nÕÄÖÜ\r\n--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1134,7 +1134,7 @@ describe("Multipart content", () => {
             "ÕÄÖÜ\r\n" +
             "--DEF--\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1154,7 +1154,7 @@ describe("Multipart content", () => {
             "\r\n" +
             "ÕÄÖÜ\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1180,7 +1180,7 @@ describe("Multipart content", () => {
             "ÕÄÖÜ1\r\n" +
             "--DEF--\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
         mailparser.end(mail);
@@ -1205,12 +1205,12 @@ describe("Attachment info", () => {
             "=00=01=02=03=04=05=06\r\n" +
             "--ABC--",
             expectedHash = "9aa461e1eca4086f9230aa49c90b0c61",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
         mailparser.end();
 
@@ -1232,14 +1232,14 @@ describe("Attachment info", () => {
             "AAECAwQFBg==\r\n" +
             "--ABC--",
             expectedHash = "9aa461e1eca4086f9230aa49c90b0c61",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser({
             streamAttachments: true
         });
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
 
@@ -1271,14 +1271,14 @@ describe("Attachment info", () => {
             "ÖÜ\r\n" +
             "--ABC--",
             expectedHash = "cad0f72629a7245dd3d2cbf41473e3ca",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser({
             streamAttachments: true
         });
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         let count = 0;
@@ -1318,7 +1318,7 @@ describe("Attachment info", () => {
         });
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         let count = 0;
@@ -1350,14 +1350,14 @@ describe("Attachment info", () => {
             "=de=d0\r\n" +
             "--ABC--",
             expectedHash = "34bca86f8cc340bbd11446ee16ee3cae",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser({
             streamAttachments: true
         });
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         let count = 0;
@@ -1389,14 +1389,14 @@ describe("Attachment info", () => {
             "end\r\n" +
             "--ABC--",
             expectedHash = "fa3ebd6742c360b2d9652b7f78d9bd7d",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser({
             streamAttachments: true
         });
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         let count = 0;
@@ -1423,14 +1423,14 @@ describe("Attachment info", () => {
             "ÕÄ\r\n" +
             "ÖÜ",
             expectedHash = "cad0f72629a7245dd3d2cbf41473e3ca",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser({
             streamAttachments: true
         });
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         let count = 0;
@@ -1472,7 +1472,7 @@ describe("Attachment info", () => {
             "\r\n" +
             "AAECAwQFBg==\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser({
             streamAttachments: true
@@ -1503,14 +1503,14 @@ describe("Attachment info", () => {
             "\r\n" +
             "AAECAwQFBg==\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser({
             streamAttachments: true
         });
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         let count = 0;
@@ -1537,7 +1537,7 @@ describe("Attachment info", () => {
             "\r\n" +
             "AAECAwQFBg==\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
@@ -1570,7 +1570,7 @@ describe("Attachment info", () => {
             "\r\n" +
             "<p>test 2</p>\r\n" +
             "--ABC--",
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser({
             showAttachmentLinks: true
@@ -1591,7 +1591,7 @@ describe("Additional text after alternative bodies", () => {
         const mailparser = new MailParser();
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         mailparser.end();
@@ -1609,12 +1609,12 @@ describe("MBOX format", () => {
             "\r\n" +
             "ÕÄ\r\n" +
             "ÖÜ", // \r\nÕÄÖÜ
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         mailparser.end();
@@ -1630,12 +1630,12 @@ describe("MBOX format", () => {
             "\r\n" +
             "ÕÄ\r\n" +
             "ÖÜ", // \r\nÕÄÖÜ
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         mailparser.end();
@@ -1650,12 +1650,12 @@ describe("MBOX format", () => {
             "\r\n" +
             ">From test\r\n" +
             ">>From pest", // \r\nÕÄÖÜ
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         mailparser.end();
@@ -1671,12 +1671,12 @@ describe("MBOX format", () => {
             "\r\n" +
             ">From test\r\n" +
             ">>From pest", // \r\nÕÄÖÜ
-            mail = new Buffer(encodedText, "utf-8");
+            mail = new Buffer.from(encodedText, "utf-8");
 
         const mailparser = new MailParser();
 
         for (let i = 0, len = mail.length; i < len; i++) {
-            mailparser.write(new Buffer([mail[i]]));
+            mailparser.write(new Buffer.from([mail[i]]));
         }
 
         mailparser.end();
@@ -1690,9 +1690,9 @@ describe("MBOX format", () => {
 describe('Charset handling', () => {
     const cases = [
         // String and its ISO-8859-1 representation
-        { str: 'ÕÄÖÜ', buf: new Buffer('d5c4d6dc', 'hex') },
+        { str: 'ÕÄÖÜ', buf: new Buffer.from('d5c4d6dc', 'hex') },
         // String and its ISO-2022-JP representation
-        { str: '学校技術員研修検討会報告', buf: new Buffer('GyRCM1g5OzU7PVEwdzgmPSQ4IUYkMnFKczlwGyhC', 'base64') }
+        { str: '学校技術員研修検討会報告', buf: new Buffer.from('GyRCM1g5OzU7PVEwdzgmPSQ4IUYkMnFKczlwGyhC', 'base64') }
     ];
 
     describe('of textual bodies', () => {

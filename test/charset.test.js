@@ -21,14 +21,14 @@ chai.config.includeStack = true;
 describe('#charset', () => {
     describe('#decode', () => {
         it('should decode UTF-8 Buffer to string', () => {
-            const input = new Buffer([0xEC, 0x8B, 0xA0]);
+            const input = new Buffer.from([0xEC, 0x8B, 0xA0]);
             const output = '신';
 
             expect(charset.decode(input)).to.deep.equal(output);
         });
 
         it('should decode non UTF-8 Buffer', () => {
-            const input = new Buffer([0xBD, 0xC5]);
+            const input = new Buffer.from([0xBD, 0xC5]);
             const encoding = 'ks_c_5601-1987';
             const output = '신';
 

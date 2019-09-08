@@ -1,6 +1,10 @@
 # MailParser-MIT
 
-[![NPM version](https://badge.fury.io/js/mailparser-mit.svg)](http://badge.fury.io/js/mailparser-mit)
+![npm](https://img.shields.io/npm/v/mailparser2-mit)
+![NPM](https://img.shields.io/npm/l/mailparser2-mit)
+![npm](https://img.shields.io/npm/dw/mailparser2-mit)
+[![Known Vulnerabilities](https://snyk.io//test/github/poipoii/mailparser-mit/badge.svg?targetFile=package.json)](https://snyk.io//test/github/poipoii/mailparser-mit?targetFile=package.json)
+[![Coverage Status](https://coveralls.io/repos/github/poipoii/mailparser-mit/badge.svg?branch=master)](https://coveralls.io/github/poipoii/mailparser-mit?branch=master)
 
 **MailParser-MIT** is an asynchronous and non-blocking parser for
 [node.js](http://nodejs.org) to parse mime encoded e-mail messages.
@@ -46,7 +50,7 @@ Since v0.4 `node-iconv` is not included by default as a dependency. If you need 
 
 ## Installation
 
-    npm install mailparser-mit
+    npm install mailparser2-mit
 
 ## Usage
 

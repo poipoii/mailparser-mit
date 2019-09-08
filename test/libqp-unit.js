@@ -20,7 +20,7 @@ const chai = require('chai');
 const libqp = require('../lib/libqp/index.js');
 
 const expect = chai.expect;
-chai.Assertion.includeStack = true;
+chai.config.includeStack = true;
 
 describe('libqp', () => {
     const encodeFixtures = [
@@ -51,7 +51,7 @@ describe('libqp', () => {
         it('should transform incoming QP to bytes', (done) => {
             var decoder = new libqp.Decoder();
 
-            var bytes = new Buffer(streamFixture[1]),
+            var bytes = new Buffer.from(streamFixture[1]),
                 i = 0,
                 buf = [],
                 buflen = 0;
@@ -78,7 +78,7 @@ describe('libqp', () => {
                 }
 
                 var ord = bytes[i++];
-                decoder.write(new Buffer([ord]));
+                decoder.write(new Buffer.from([ord]));
                 setImmediate(sendNextByte);
             };
 
