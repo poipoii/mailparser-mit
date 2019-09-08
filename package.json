@@ -14,21 +14,23 @@
     "url": "http://github.com/poipoii/mailparser-mit.git"
   },
   "scripts": {
-    "test": "mocha --recursive --reporter list"
+    "test": "mocha --recursive --reporter list",
+    "test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "main": "./lib/mailparser",
   "license": "MIT",
   "dependencies": {
     "addressparser": "1.0.1",
-    "extend": "3.0.2",
     "iconv-lite": "0.5.0",
     "mime": "2.4.4",
     "uue": "3.1.2"
   },
   "devDependencies": {
     "chai": "4.2.0",
+    "coveralls": "3.0.6",
     "iconv": "2.3.4",
-    "mocha": "6.2.0"
+    "mocha": "6.2.0",
+    "nyc": "14.1.1"
   },
   "keywords": [
     "mailparser",
