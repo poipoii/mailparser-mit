@@ -18,6 +18,9 @@
     "test-with-coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "main": "./lib/mailparser",
+  "files": [
+    "/lib"
+  ],
   "license": "MIT",
   "dependencies": {
     "addressparser": "1.0.1",

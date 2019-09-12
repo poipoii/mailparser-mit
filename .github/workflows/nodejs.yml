@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - '*'
+  release:
+    types: [published]
+    branches:
+      - master
 
 jobs:
   test:
@@ -29,3 +33,16 @@ jobs:
         CI: true
         COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
         COVERALLS_SERVICE_NAME: "Github Actions"
+
+  release:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.x'
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm publish --access public
+      env:
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
