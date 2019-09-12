@@ -1,8 +1,8 @@
 # MailParser-MIT
 
-![npm](https://img.shields.io/npm/v/mailparser2-mit)
-![NPM](https://img.shields.io/npm/l/mailparser2-mit)
-![npm](https://img.shields.io/npm/dw/mailparser2-mit)
+[![npm](https://img.shields.io/npm/v/mailparser2-mit)](https://www.npmjs.com/package/mailparser2-mit)
+[![NPM](https://img.shields.io/npm/l/mailparser2-mit)](https://www.npmjs.com/package/mailparser2-mit)
+[![npm](https://img.shields.io/npm/dw/mailparser2-mit)](https://www.npmjs.com/package/mailparser2-mit)
 [![Known Vulnerabilities](https://snyk.io//test/github/poipoii/mailparser-mit/badge.svg?targetFile=package.json)](https://snyk.io//test/github/poipoii/mailparser-mit?targetFile=package.json)
 [![Coverage Status](https://coveralls.io/repos/github/poipoii/mailparser-mit/badge.svg?branch=master)](https://coveralls.io/github/poipoii/mailparser-mit?branch=master)
 
